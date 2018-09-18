@@ -100,8 +100,10 @@ def downloadImg(imgUrl, imgId):
 
 
 lock = td.Lock()
-IMG_ID = int(input("Input start ID:"))
-END_ID = int(input("Input end ID:"))
+ipt = input("Input start ID:")
+IMG_ID = 400000 if len(ipt.strip()) == 0 else int(min(ipt, 1))
+ipt = input("Input end ID  :")
+END_ID = 500000 if len(ipt.strip()) == 0 else int(min(IMG_ID + 1, ipt))
 for i in range(THREAD_COUNT):
     t = td.Thread(target=threadTask, args=(i, ), daemon=True)
     t.start()
